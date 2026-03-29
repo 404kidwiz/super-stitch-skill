@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+.stitch/
+.env
+.env.*
+
+# Local-only helper files not meant for the public skill repo
+ANTIGRAVITY_CLAUDE_CODE_SETUP.md
+scripts/claude-antigravity.sh

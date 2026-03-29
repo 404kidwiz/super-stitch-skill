@@ -1,0 +1,7 @@
+interface:
+  display_name: "Super Stitch Skill"
+  short_description: "Premium Stitch workflows for clone, redesign, and handoff."
+  default_prompt: "Use $super-stitch-skill to clone, redesign, or hand off a Google Stitch interface with high-fidelity structure and premium UI direction."
+
+policy:
+  allow_implicit_invocation: true

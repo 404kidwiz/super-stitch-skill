@@ -1,3 +1,5 @@
+[![Validate](https://github.com/404kidwiz/super-stitch-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/404kidwiz/super-stitch-skill/actions/workflows/validate.yml)
+
 # Super Stitch Skill
 
 `super-stitch-skill` is the repo-ready, reusable version of the Stitch design system we just built locally.
@@ -10,6 +12,22 @@ It packages a high-fidelity Google Stitch workflow for:
 - implementation handoff into Tailwind v4, shadcn/ui, Radix, and React
 
 This repo keeps `super-stitch-skill` as the canonical package name and retains `google-stitch-design` as a compatibility alias for older prompts, installers, and local links.
+
+## Visual Flow
+
+```mermaid
+flowchart LR
+  A["Reference URL / Screenshots / HTML-CSS-JS"] --> B["Clone Audit"]
+  B --> C["Structured Stitch Prompt"]
+  C --> D["Generate In Stitch"]
+  D --> E["Compare Against Reference"]
+  E --> F["Delta List"]
+  F --> G["Targeted Edit Prompt"]
+  G --> D
+  E --> H["Approved Baseline"]
+  H --> I["Redesign Branch"]
+  H --> J["Code Handoff"]
+```
 
 ## What The Skill Does
 
@@ -103,10 +121,17 @@ Reference files:
 Install and verification scripts:
 - [install-super-stitch-skill.sh](/Users/404kidwiz/Documents/New%20project/scripts/install-super-stitch-skill.sh)
 - [verify-super-stitch-skill.sh](/Users/404kidwiz/Documents/New%20project/scripts/verify-super-stitch-skill.sh)
+- [validate-repo.sh](/Users/404kidwiz/Documents/New%20project/scripts/validate-repo.sh)
 
 Legacy compatibility scripts:
 - [install-google-stitch-design.sh](/Users/404kidwiz/Documents/New%20project/scripts/install-google-stitch-design.sh)
 - [verify-google-stitch-design.sh](/Users/404kidwiz/Documents/New%20project/scripts/verify-google-stitch-design.sh)
+
+Examples:
+- [examples/README.md](/Users/404kidwiz/Documents/New%20project/examples/README.md)
+- [examples/clone-reference.md](/Users/404kidwiz/Documents/New%20project/examples/clone-reference.md)
+- [examples/redesign-after-clone.md](/Users/404kidwiz/Documents/New%20project/examples/redesign-after-clone.md)
+- [examples/code-handoff.md](/Users/404kidwiz/Documents/New%20project/examples/code-handoff.md)
 
 ## How To Install
 
@@ -139,6 +164,12 @@ Run:
 bash scripts/verify-super-stitch-skill.sh
 ```
 
+For repo-only validation with no CLI smoke tests or network dependencies:
+
+```bash
+bash scripts/validate-repo.sh
+```
+
 The verifier checks:
 - the repo-local skill exists
 - the canonical skill is visible in Gemini, Claude, Codex, and OpenCode
@@ -148,6 +179,17 @@ The verifier checks:
 Smoke-test target:
 - the third item under `Read In This Order`
 - expected answer: `references/site-clone-loop.md`
+
+## CI
+
+This repo includes:
+- [validate.yml](/Users/404kidwiz/Documents/New%20project/.github/workflows/validate.yml)
+
+The workflow runs on pushes to `main` and on pull requests. It only performs local, non-network validation:
+- shell syntax checks for the install and verify scripts
+- required file presence checks
+- README structure checks
+- canonical skill metadata checks
 
 ## Example Uses
 
@@ -175,6 +217,11 @@ Use super-stitch-skill to design a responsive AI workspace for founders with des
 Use super-stitch-skill to turn the approved Stitch screen into a clean Tailwind v4 + shadcn/ui component plan with button variants, nav behavior, loading states, and motion guidance.
 ```
 
+For copy-paste-ready prompt files, use:
+- [examples/clone-reference.md](/Users/404kidwiz/Documents/New%20project/examples/clone-reference.md)
+- [examples/redesign-after-clone.md](/Users/404kidwiz/Documents/New%20project/examples/redesign-after-clone.md)
+- [examples/code-handoff.md](/Users/404kidwiz/Documents/New%20project/examples/code-handoff.md)
+
 ## Design Standard
 
 This repo is opinionated. The quality bar is intentionally high.
@@ -201,3 +248,4 @@ The expected output should feel:
 - This repo keeps the README at the root on purpose. The skill itself stays lean and self-contained.
 - `super-stitch-skill` is the name to publish and share going forward.
 - `google-stitch-design` remains here so old prompts and existing local installs do not break.
+- The repo is public and includes GitHub issues plus a basic validation workflow.
